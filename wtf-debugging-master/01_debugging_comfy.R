@@ -1,14 +1,12 @@
 # Determine the bug when you run `get_climates()`
 # Hint: Use `traceback()` to find where it occurs, add breakpoints / `browser()` calls
-# Hint: look at types of input
+# Hint: look at the types of the data and make sure they are what the functions expect.
 
 library(tidyverse)
 
 # Separate, flatten, and trim values in the vector
 clean <- function(vec) {
-  # browser()
-  # recover()
-  values <- strsplit(as.character(vec), ",")
+  values <- strsplit(vec, ",")
   flat_values <- unlist(values)
   trimmed_values <- str_trim(flat_values)
   trimmed_values
@@ -23,7 +21,7 @@ uniquify <- function(vec) {
 
 # Read data and get unique climate values
 get_climates <- function() {
-  planets <- read.csv2(here::here("planets.csv"),stringsAsFactors = F)
+  planets <- read.csv2(here::here("activities/planets.csv"))
   unique_climate <- uniquify(planets$climate)
   unique_climate
 }
